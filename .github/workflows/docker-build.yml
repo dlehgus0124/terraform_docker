@@ -1,0 +1,30 @@
+name: Build and Deploy Docker Image
+
+# 이 워크플로우는 main 브랜치에 푸시될 때 트리거됩니다
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # GitHub 저장소에서 코드를 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Docker를 설정
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Docker 이미지를 빌드
+      - name: Build Docker image
+        run: |
+          docker build -t my-nginx-image:latest .
+      
+      # 이미지를 DockerHub에 푸시
+      - name: Docker run
+        run: |
+          docker run -p 8080:80 my-nginx-image:latest
