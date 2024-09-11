@@ -27,4 +27,4 @@ jobs:
       # 이미지를 DockerHub에 푸시
       - name: Docker run
         run: |
-          docker run -p 8080:80 my-nginx-image:latest
+          docker run -d -p 8080:80 my-nginx-image:latest
