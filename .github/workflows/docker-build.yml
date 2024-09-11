@@ -26,17 +26,17 @@ jobs:
       # Docker 이미지를 빌드
       - name: Build Docker image
         run: |
-          docker build -t dlehgus0124/my-nginx .
+          docker build -t dlehgus0124/my-nginx:v1 .
       
       # 이미지를 DockerHub에 푸시
       - name: Push Docker image
         run: |
-          docker push dlehgus0124/my-nginx
+          docker push dlehgus0124/my-nginx:v1
       
       - name: Docker pull
         run: |
-          docker pull dlehgus0124/my-nginx
+          docker pull dlehgus0124/my-nginx:v1
 
       - name: Docker run
         run: |
-          docker run -d -p 8080:80 dlehgus0124/my-nginx
+          docker run -d -p 8080:80 dlehgus0124/my-nginx:v1
